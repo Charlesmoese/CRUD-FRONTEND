@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import API_URL from '../config';
+import './ContactForm.css';
 
 function ContactForm({ contactToEdit, onSaved }) {
   const [name, setName] = useState('');
@@ -9,17 +9,19 @@ function ContactForm({ contactToEdit, onSaved }) {
     if (contactToEdit) {
       setName(contactToEdit.name);
       setPhone(contactToEdit.phone);
+    } else {
+      setName('');
+      setPhone('');
     }
   }, [contactToEdit]);
 
   const handleSubmit = async e => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-
     const method = contactToEdit ? 'PUT' : 'POST';
     const url = contactToEdit
-      ? `${API_URL}/contacts/${contactToEdit._id}`
-      : `${API_URL}/contacts`;
+      ? `${import.meta.env.VITE_API_URL}/contacts/${contactToEdit._id}`
+      : `${import.meta.env.VITE_API_URL}/contacts`;
 
     const res = await fetch(url, {
       method,
@@ -40,11 +42,31 @@ function ContactForm({ contactToEdit, onSaved }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="contact-form" onSubmit={handleSubmit}>
       <h2>{contactToEdit ? 'Editar Contato' : 'Novo Contato'}</h2>
-      <input placeholder="Nome" value={name} onChange={e => setName(e.target.value)} required />
-      <input placeholder="Telefone" value={phone} onChange={e => setPhone(e.target.value)} required />
-      <button type="submit">{contactToEdit ? 'Atualizar' : 'Salvar'}</button>
+      <label>
+        Nome
+        <input
+          type="text"
+          placeholder="Digite o nome"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Telefone
+        <input
+          type="tel"
+          placeholder="Digite o telefone"
+          value={phone}
+          onChange={e => setPhone(e.target.value)}
+          required
+        />
+      </label>
+      <button type="submit" className="btn-primary">
+        {contactToEdit ? 'Atualizar' : 'Salvar'}
+      </button>
     </form>
   );
 }

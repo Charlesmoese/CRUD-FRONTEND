@@ -1,32 +1,44 @@
 import React, { useState } from 'react';
-import API_URL from '../config';
+import { Link, useNavigate } from 'react-router-dom';
+import './Auth.css';
 
-function Login() {
+function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = async e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    const res = await fetch(`${API_URL}/login`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     });
-    const data = await res.json();
-    if (data.token) {
-      localStorage.setItem('token', data.token);
-      window.location.href = '/';
+    if (res.ok) {
+      const { token } = await res.json();
+      localStorage.setItem('token', token);
+      onLogin && onLogin();
+      navigate('/contatos');
     } else {
-      alert('Login falhou');
+      alert('Login inválido');
     }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-      <input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} />
-      <button type="submit">Entrar</button>
+    <form className="auth-form" onSubmit={handleSubmit}>
+      <h2>Entrar</h2>
+      <label>
+        Email
+        <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+      </label>
+      <label>
+        Senha
+        <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+      </label>
+      <button className="btn-primary" type="submit">Entrar</button>
+      <p>
+        Não tem conta? <Link to="/register">Cadastre-se</Link>
+      </p>
     </form>
   );
 }

@@ -15,16 +15,14 @@ function Home() {
       <h1>Gerenciador de Contatos</h1>
       <ContactForm />
       <ContactList />
+      <button onClick={() => {
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+      }}>
+        Sair
+      </button>
     </div>
   );
 }
-
-<button onClick={() => {
-  localStorage.removeItem('token');
-  window.location.href = '/login';
-}}>
-  Sair
-</button>
-
 
 export default Home;
