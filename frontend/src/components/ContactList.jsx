@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import API_URL from '../config';
 import ContactForm from './ContactForm';
 
-function ContactList() {
+function ContactList({ onLogout }) {
   const [contacts, setContacts] = useState([]);
   const [editing, setEditing] = useState(null);
 
@@ -38,6 +38,14 @@ function ContactList() {
 
   return (
     <div>
+      {/* Botão de logout no topo direito */}
+      <button
+        onClick={onLogout}
+        className="btn-logout"
+        style={{ float: 'right', margin: '1rem' }}
+      >
+        Sair
+      </button>
       <ContactForm contactToEdit={editing} onSaved={() => {
         setEditing(null);
         loadContacts();

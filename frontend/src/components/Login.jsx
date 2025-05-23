@@ -19,8 +19,6 @@ function Login({ onLogin }) {
       localStorage.setItem('token', token);
       onLogin && onLogin();
       navigate('/contatos');
-    } else {
-      alert('Login inválido');
     }
   };
 

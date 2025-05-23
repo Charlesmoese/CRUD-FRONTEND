@@ -33,3 +33,21 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+
+.btn-logout {
+  width: auto;
+  background-color: #e74c3c;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  margin: 1rem 0 1rem 1rem;
+  float: right;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-logout:hover {
+  background-color: #c0392b;
+}
