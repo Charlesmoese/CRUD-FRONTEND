@@ -10,6 +10,19 @@ function Register() {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    if (!username || !email || !password) {
+      alert('Preencha todos os campos!');
+      return;
+    }
+    // Validação simples de email
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      alert('Email inválido!');
+      return;
+    }
+    if (password.length < 6) {
+      alert('A senha deve ter pelo menos 6 caracteres!');
+      return;
+    }
     const res = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

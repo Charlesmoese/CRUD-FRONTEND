@@ -17,6 +17,11 @@ function ContactForm({ contactToEdit, onSaved }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    // Validação do telefone: formato 00 00000-0000
+    if (!/^\d{2} \d{5}-\d{4}$/.test(phone)) {
+      alert('Telefone inválido! Use o formato xx xxxxx-xxxx');
+      return;
+    }
     const token = localStorage.getItem('token');
     const method = contactToEdit ? 'PUT' : 'POST';
     const url = contactToEdit

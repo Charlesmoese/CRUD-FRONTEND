@@ -9,6 +9,10 @@ function Login({ onLogin }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    if (!email || !password) {
+      alert('Preencha todos os campos!');
+      return;
+    }
     const res = await fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -19,6 +23,9 @@ function Login({ onLogin }) {
       localStorage.setItem('token', token);
       onLogin && onLogin();
       navigate('/contatos');
+    } else {
+      const error = await res.json().catch(() => ({}));
+      alert(error.message || 'Email ou senha inválidos!');
     }
   };
 
