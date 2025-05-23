@@ -18,7 +18,8 @@ function Register() {
       alert('Cadastro realizado! Faça login.');
       navigate('/login');
     } else {
-      alert('Erro ao cadastrar');
+      const error = await res.json().catch(() => ({}));
+      alert(error.message || 'Erro ao cadastrar');
     }
   };
 
