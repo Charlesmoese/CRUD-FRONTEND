@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css';
 
 function Register() {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Register() {
     const res = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ username, email, password })
     });
     if (res.ok) {
       alert('Cadastro realizado! Faça login.');
@@ -27,12 +28,31 @@ function Register() {
     <form className="auth-form" onSubmit={handleSubmit}>
       <h2>Criar Conta</h2>
       <label>
+        Nome de usuário
+        <input
+          type="text"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          required
+        />
+      </label>
+      <label>
         Email
-        <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+        <input
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
       </label>
       <label>
         Senha
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+        <input
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
       </label>
       <button className="btn-primary" type="submit">Cadastrar</button>
       <p>
