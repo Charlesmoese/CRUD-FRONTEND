@@ -54,10 +54,14 @@ function ContactList({ onLogout }) {
       {contacts.length === 0 ? <p>Nenhum contato.</p> : (
         <ul>
           {contacts.map(c => (
-            <li key={c._id}>
-              <strong>{c.name}</strong> – {c.phone}
-              <button onClick={() => handleEdit(c)}>Editar</button>
-              <button onClick={() => handleDelete(c._id)}>Excluir</button>
+            <li key={c._id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span>
+                <strong>{c.name}</strong> – {c.phone}
+              </span>
+              <span>
+                <button onClick={() => handleEdit(c)}>Editar</button>
+                <button onClick={() => handleDelete(c._id)}>Excluir</button>
+              </span>
             </li>
           ))}
         </ul>
