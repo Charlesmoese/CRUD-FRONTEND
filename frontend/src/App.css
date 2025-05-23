@@ -14,15 +14,8 @@ form {
   border-radius: 8px;
 }
 
-input, button {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: none;
-}
-
 input {
+  width: 100%;
   background-color: #3a3a3a;
   color: white;
 }
@@ -32,6 +25,7 @@ button {
   color: white;
   font-weight: bold;
   cursor: pointer;
+  width: 100%;
 }
 
 .btn-logout {
@@ -84,7 +78,7 @@ li button {
   width: auto;
   min-width: 50px;      /* diminui o tamanho mínimo */
   margin-left: 0;
-  padding: 4px 3px;     /* botões menores */
+  padding: 4px 8px;     /* botões menores */
   background: #d36a02;
   color: #fff;
   border-radius: 4px;
@@ -115,4 +109,23 @@ li button:hover {
   margin-bottom: 18px;
   text-align: center;
   letter-spacing: 1px;
+}
+
+.contacts-block li button {
+  width: auto;
+  min-width: 36px;
+  margin-left: 0;
+  padding: 3px 8px;
+  background: #d36a02;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.contacts-block li button:hover {
+  background: #0059c1;
 }
