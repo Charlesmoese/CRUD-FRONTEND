@@ -61,7 +61,7 @@ ul {
 
 li {
   background: #232323;
-  color: #ccc; /* fonte cinza */
+  color: #eddede; /* texto claro */
   margin-bottom: 12px;
   padding: 16px 12px;
   border-radius: 6px;
@@ -106,6 +106,7 @@ li button:hover {
   padding: 24px 20px;
   max-width: 500px;
   margin: 30px auto 0 auto;
+  color: #fafafa; /* texto claro no bloco */
 }
 
 .contacts-block h2 {
