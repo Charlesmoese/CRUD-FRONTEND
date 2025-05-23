@@ -38,7 +38,6 @@ function ContactList({ onLogout }) {
 
   return (
     <div>
-      {/* Botão de logout no topo direito */}
       <button
         onClick={onLogout}
         className="btn-logout"
@@ -50,22 +49,24 @@ function ContactList({ onLogout }) {
         setEditing(null);
         loadContacts();
       }} />
-      <h2>Seus Contatos</h2>
-      {contacts.length === 0 ? <p>Nenhum contato.</p> : (
-        <ul>
-          {contacts.map(c => (
-            <li key={c._id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span>
-                <strong>{c.name}</strong> – {c.phone}
-              </span>
-              <span>
-                <button onClick={() => handleEdit(c)}>Editar</button>
-                <button onClick={() => handleDelete(c._id)}>Excluir</button>
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="contacts-block">
+        <h2>Seus Contatos</h2>
+        {contacts.length === 0 ? <p>Nenhum contato.</p> : (
+          <ul>
+            {contacts.map(c => (
+              <li key={c._id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>
+                  <strong>{c.name}</strong> – {c.phone}
+                </span>
+                <span>
+                  <button onClick={() => handleEdit(c)}>Editar</button>
+                  <button onClick={() => handleDelete(c._id)}>Excluir</button>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
