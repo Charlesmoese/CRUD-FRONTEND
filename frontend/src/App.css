@@ -84,7 +84,7 @@ li button {
   width: auto;
   min-width: 70px;
   margin-left: 0;
-  padding: 6px 10px; /* botões menores */
+  padding: 5px 8px; /* botões menores */
   background: #0070f3;
   color: #fff;
   border-radius: 4px;
@@ -106,7 +106,7 @@ li button:hover {
   padding: 24px 20px;
   max-width: 500px;
   margin: 30px auto 0 auto;
-  color: #fafafa; /* texto claro no bloco */
+  color: #000000; /* texto claro no bloco */
 }
 
 .contacts-block h2 {
